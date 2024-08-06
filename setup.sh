@@ -51,9 +51,9 @@ echo
 
 # 设置MariaDB root用户远程访问权限
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MARIADB_PASSWORD';"
-sudo mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY '$MARIADB_PASSWORD';"
+sudo mysql -u root -p"$MARIADB_PASSWORD" -e "CREATE USER 'root'@'%' IDENTIFIED BY '$MARIADB_PASSWORD';"
 sudo mysql -u root -p"$MARIADB_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;"
-sudo mysql -e root -p"$MARIADB_PASSWORD" -e "FLUSH PRIVILEGES;"
+sudo mysql -u root -p"$MARIADB_PASSWORD" -e "FLUSH PRIVILEGES;"
 unset MARIADB_PASSWORD
 # 输出安装信息
 echo "Nginx, MariaDB, Docker, JDK 17, Screen, and Htop have been installed and configured."
